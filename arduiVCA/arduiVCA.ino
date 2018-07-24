@@ -15,8 +15,8 @@ void setup() {
     int endTime = 0;
     for (int i = 0; i < 5; i++) {
         startTime = micros();
-        Serial.println(myVCA.ReadMotorAPositionBit());
-        myVCA.DriveMotorADuty(0.5);
+        Serial.println(myVCA.ReadMotorAPositionMM());
+//        myVCA.DriveMotorADuty(0.5);
         endTime = micros();
         Serial.println(endTime - startTime);
         delayMicroseconds(450);

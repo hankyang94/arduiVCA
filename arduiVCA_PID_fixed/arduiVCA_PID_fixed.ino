@@ -13,7 +13,8 @@ int loop_period = 1000;    // loop period in microseconds, 1kHz --> 1000us
 double Setpoint, Input, Output;
 double Kp = 0.2, Ki = 0, Kd = 0;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd,  // proportional on error
-          REVERSE);   // because the voltage decreases as position increases, here we use reverse
+          DIRECT);   // because the voltage decreases as position increases, here we use reverse
+                     // if directly measure shaft position based on calibration, use DIRECT
 
 int timer = micros();
 
@@ -32,7 +33,7 @@ void setup() {
 
 void loop() {
     timer = micros();
-    Input = myVCA.ReadMotorAPositionVoltage();
+    Input = myVCA.ReadMotorAPositionMM();  // directly read position, use direct PID
     myPID.ComputeWithoutTiming();
     myVCA.DriveMotorADuty(Output);
     while (micros() - timer < loop_period);
