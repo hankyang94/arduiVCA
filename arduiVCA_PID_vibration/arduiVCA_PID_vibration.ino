@@ -31,7 +31,7 @@ void setup() {
     while (!Serial);
     Serial.println("Setup starts");
     Serial.println(M_PI);
-    myVCA.StopMotorA();
+    myVCA.StopMotor();
     Serial.println("setup ends");
     myPID.SetMode(AUTOMATIC);   // automatic, not manual
     myPID.SetOutputLimits(-1.0, 1.0);  // output is duty cycle, so clamped between -1 and 1

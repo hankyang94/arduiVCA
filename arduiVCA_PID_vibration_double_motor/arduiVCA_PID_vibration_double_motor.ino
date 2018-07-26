@@ -26,11 +26,11 @@ PID myPID_B(&Input_B, &Output_B, &Setpoint_B, Kp_B, Ki_B, Kd_B,  // proportional
 // define vibration frequency
 int vibFreq_A = 50;
 double vibAmp_A = 1.0;
-double offSet_A = 2.5;
+double offSet_A = 2;
 
 int vibFreq_B = 50;
 double vibAmp_B = 1.0;
-double offSet_B = 2.5;
+double offSet_B = 2;
 
 int timer;
 int start_time;
