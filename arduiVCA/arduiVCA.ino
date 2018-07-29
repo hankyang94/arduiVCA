@@ -15,17 +15,17 @@ void setup() {
     int endTime = 0;
     for (int i = 0; i < 5; i++) {
         startTime = micros();
-        Serial.println(myVCA.ReadMotorAPositionMM());
+        Serial.println(myVCA.ReadMotorBPositionMM());
 //        myVCA.DriveMotorADuty(0.5);
         endTime = micros();
         Serial.println(endTime - startTime);
         delayMicroseconds(450);
     }
-    Serial.println(myVCA.ReadMotorAPositionBit());
+    Serial.println(myVCA.ReadMotorBPositionBit());
     myVCA.StopMotor();
 
     for (int i = 0; i < 10; i++) {
-        Serial.println(myVCA.ReadMotorAPositionBit());
+        Serial.println(myVCA.ReadMotorBPositionBit());
     }
     
     Serial.println("setup ends");

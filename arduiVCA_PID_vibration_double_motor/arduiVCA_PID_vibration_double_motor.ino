@@ -18,7 +18,7 @@ PID myPID_A(&Input_A, &Output_A, &Setpoint_A, Kp_A, Ki_A, Kd_A,  // proportional
 // if directly measure shaft position based on calibration, use DIRECT
 
 double Setpoint_B, Input_B, Output_B;
-double Kp_B = 0.3, Ki_B = 0, Kd_B = 0;   // for motor B, 0.3 is the max Kp
+double Kp_B = 0.2, Ki_B = 0, Kd_B = 0;   // for motor B, 0.3 is the max Kp
 PID myPID_B(&Input_B, &Output_B, &Setpoint_B, Kp_B, Ki_B, Kd_B,  // proportional on error
             DIRECT);
 
