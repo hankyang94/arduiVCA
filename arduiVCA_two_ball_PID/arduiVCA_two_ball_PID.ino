@@ -1,5 +1,7 @@
 //
 // Created by Hank on 7/24/2018.
+// this is the script for running experiments on phantoms
+// You have to open the serial monitor to make motors vibrate!
 //
 
 #include <VCA_Plant.h>
@@ -18,14 +20,14 @@ VCA_Plant myVCA;
 // define our PID controller
 int loop_period = 1000;    // loop period in microseconds, 1kHz --> 1000us
 double Setpoint_A, Input_A, Output_A;
-double Kp_A = 0.22, Ki_A = 1e-4, Kd_A = 1e-5;   // for motor A, transient PID for one-cycle vibration
+double Kp_A = 0.2, Ki_A = 1e-4, Kd_A = 1e-5;   // for motor A, transient PID for one-cycle vibration
                                                 // for motor A, 0.2, 0, 0 would be good for continuous vibration
 PID myPID_A(&Input_A, &Output_A, &Setpoint_A, Kp_A, Ki_A, Kd_A,  // proportional on error
           DIRECT);   // because the voltage decreases as position increases, here we use reverse
 // if directly measure shaft position based on calibration, use DIRECT
 
 double Setpoint_B, Input_B, Output_B;
-double Kp_B = 0.25, Ki_B = 1e-9, Kd_B = 1e-5;   // for motor B, 0.3 is the max Kp
+double Kp_B = 0.17, Ki_B = 1e-9, Kd_B = 1e-5;   // for motor B, 0.3 is the max Kp
                                                 // for motor B, 0.2, 0, 0, would be good for continuous vibration
 PID myPID_B(&Input_B, &Output_B, &Setpoint_B, Kp_B, Ki_B, Kd_B,  // proportional on error
             DIRECT);
@@ -33,12 +35,12 @@ PID myPID_B(&Input_B, &Output_B, &Setpoint_B, Kp_B, Ki_B, Kd_B,  // proportional
 
 // define vibration frequency
 int vibFreq_A = 50;
-double vibAmp_A = 1.0;
-double offSet_A = 2.0;
+double vibAmp_A = 2;
+double offSet_A = 3.0;
 
 int vibFreq_B = 50;
-double vibAmp_B = 1.0;
-double offSet_B = 2.0;
+double vibAmp_B = 2;
+double offSet_B = 3.0;
 
 const int num_cycles = 2;
 const int cycle_gap_time = 2000;   // gap time between consecutive cycles

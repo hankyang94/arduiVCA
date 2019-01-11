@@ -1,5 +1,6 @@
 //
 // Created by Hank on 7/16/2018.
+//  This script controls the VCA at a fixed point.
 //
 
 #include <VCA_Plant.h>

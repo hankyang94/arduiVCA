@@ -30,7 +30,7 @@ double offSet_A = 2;
 
 int vibFreq_B = 50;
 double vibAmp_B = 1.0;
-double offSet_B = 2;
+double offSet_B = 3.0;
 
 int timer;
 int start_time;

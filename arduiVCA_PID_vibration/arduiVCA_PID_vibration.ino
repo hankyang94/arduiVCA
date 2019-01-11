@@ -1,6 +1,7 @@
-//
+/*
 // Created by Hank on 7/24/2018.
-//
+ This script controls the VCA at a fixed point.
+*/
 
 #include <VCA_Plant.h>
 #include <PID_v1.h>
@@ -12,13 +13,13 @@ VCA_Plant myVCA;
 // define our PID controller
 int loop_period = 1000;    // loop period in microseconds, 1kHz --> 1000us
 double Setpoint, Input, Output;
-double Kp = 0.25, Ki = 0, Kd = 0;
+double Kp = 0.2, Ki = 0, Kd = 0;
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd,  // proportional on error
           DIRECT);   // because the voltage decreases as position increases, here we use reverse
 // if directly measure shaft position based on calibration, use DIRECT
 
 // define vibration frequency
-int vibFreq = 50;
+int vibFreq = 30;
 double vibAmp = 1.0;
 double offSet = 2.5;
 
