@@ -70,6 +70,8 @@ void setup() {
 
     vib_cycle = 1 * (int)(1.0/(double)vibFreq_A * 1e6);
     vib_duration = num_cycles * vib_cycle + (num_cycles-1) * cycle_gap_time;
+//    Serial.println("Vibration duration: %d.", vib_duration);
+    Serial.println(vib_cycle);
     Serial.println(vib_duration);
     attachInterrupt(digitalPinToInterrupt(ARFSignalPin), vibrate, RISING);
 //    pinMode(ARFSignalPin, INPUT);    // set ARF signal pin to be input, so that it can read voltage HIGH and LOW
@@ -113,8 +115,11 @@ void vibrate() {
         }
         while (micros() - start_time < ( (i+1) * vib_cycle + (i+1)*cycle_gap_time + slack_time)) {
             isr_timer = micros();
-            Setpoint_A = - vibAmp_A * cos(2.0 * M_PI * vibFreq_A * (((double) (isr_timer - start_time)) / 1e6)) + vibAmp_A + offSet_A;
-            Setpoint_B = - vibAmp_B * cos(2.0 * M_PI * vibFreq_B * (((double) (isr_timer - start_time)) / 1e6)) + vibAmp_B + offSet_B;
+//            Setpoint_A = - vibAmp_A * cos(2.0 * M_PI * vibFreq_A * (((double) (isr_timer - start_time)) / 1e6)) + vibAmp_A + offSet_A;
+//            Setpoint_B = - vibAmp_B * cos(2.0 * M_PI * vibFreq_B * (((double) (isr_timer - start_time)) / 1e6)) + vibAmp_B + offSet_B;
+            Setpoint_A = - vibAmp_A * cos(2.0 * M_PI * vibFreq_A * (((double) (vib_cycle)) / 1e6)) + vibAmp_A + offSet_A;
+            Setpoint_B = - vibAmp_B * cos(2.0 * M_PI * vibFreq_B * (((double) (vib_cycle)) / 1e6)) + vibAmp_B + offSet_B;
+            Serial.println(Setpoint_A); Serial.println(Setpoint_B); 
             Input_A = myVCA.ReadMotorAPositionMM();  // directly read position, use direct PID
             Input_B = myVCA.ReadMotorBPositionMM();
 //        Serial.println(Input_A);
